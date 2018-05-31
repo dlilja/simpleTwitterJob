@@ -1,0 +1,22 @@
+# Use this file to set necessary variables in SimpleTwitterJob. Empty lines and
+# lines starting with the character # are ignored. This file is preconfigured to
+# work on a single machine standalone Spark cluster but you are required to
+# enter your own Twitter and Twitter API credentials. This file is by default
+# assumed to be in the working directory from where you submit the Spark job.
+
+# Enter your Twitter credentials.
+consumerKey=x
+consumerSecret=x
+accessToken=x
+accessTokenSecret=x
+
+# Set the timeout in seconds, determining the duration of the streaming.
+timeout=3600
+
+# Set the directory to save the collected Twitter data to. Needs to be
+# accessible by the driver and all workers. 
+outputDir=file:///tmp/twitterData/
+
+# Set checkpoint directory for GraphFrames. Needs to be accessible by the driver
+# and all workers. 
+checkpointDir=file:///tmp/checkpoints/

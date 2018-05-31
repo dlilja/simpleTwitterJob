@@ -147,30 +147,29 @@ object SimpleTwitterJob {
     println("Who was retweeted the most?")
     graph.inDegrees.orderBy($"inDegree".desc).show(10)
 
-    println("Who retweeted the most?")
     // Who retweeted the most?
+    println("Who retweeted the most?")
     graph.outDegrees.orderBy($"outDegree".desc).show(10)
 
-    println("Who retweeted each other?")
     // Find people who retweeted each other
-    graph.find("(a) - [e1] -> (b); (b) - [e2] -> (a)").show(10)
+    println("Who retweeted each other?")
     graph.find("(a) - [e1] -> (b); (b) - [e2] -> (a)").where($"a" =!= $"b").show(10)
 
-    // // Compute connected components
-    // val components = graph.connectedComponents.run
-    // components.cache()
+    // Compute connected components
+    val components = graph.connectedComponents.run
+    components.cache()
 
-    // // How many connected components are there?
-    // println("Number of connected components: " + components.select("component").distinct.count())
+    // How many connected components are there?
+    println("Number of connected components: " + components.select("component").distinct.count())
 
-    // // How many people belong to each connected component?
-    // println("How many users belong to each connected component?")
-    // components.groupBy("component").count().orderBy($"count".desc).show(10)
+    // How many people belong to each connected component?
+    println("How many users belong to each connected component?")
+    components.groupBy("component").count().orderBy($"count".desc).show(10)
 
-    // // What is the PageRank of each user?
-    // println("Top 10 pageranks:")
-    // graph.pageRank.resetProbability(0.15).tol(0.01).run.vertices
-    //   .orderBy($"pagerank".desc).show(10)
+    // What is the PageRank of each user?
+    println("Top 10 pageranks:")
+    graph.pageRank.resetProbability(0.15).tol(0.01).run.vertices
+      .orderBy($"pagerank".desc).show(10)
 
     spark.stop()
   }

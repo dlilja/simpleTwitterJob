@@ -18,7 +18,7 @@ object Dependencies {
   lazy val sparkVersion = "2.2.0"
   lazy val gsonVersion = "2.8.2"
   lazy val twitter4jVersion = "4.0.6"
-  lazy val graphframesVersion = "0.5.0-spark2.1"
+  lazy val graphframesVersion = "0.5.0-spark2.1-s_2.11"
   lazy val bahirVersion = "2.2.0"
 
   val sparkCore = "org.apache.spark" %% "spark-core" % sparkVersion

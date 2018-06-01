@@ -22,15 +22,17 @@ to create a jar file to run on a Spark cluster using `spark-submit`.
 ## Instructions
 
 The file `config.txt` is used to set several necessary variables. It comes
-preconfigured for a single machine standalone Spark cluster but requires you to
-enter your own Twitter and Twitter API credentials. In a distributed setting you
-need to change `outputDir` and `checkpointDir` to directories which are
-available to the driver and all workers in the cluster, e.g. a directory in the
-`hdfs`.
+preconfigured for a standalone Spark cluster but requires you to enter your own
+Twitter and Twitter API credentials. When submitting the packaged jar to run on
+the standalone Spark cluster attach `config.txt` by using the `--files
+/path/to/config.txt` option to `spark-submit`.
 
-The file `config.txt` is by default assumed to be in the working directory from
-where you submit the Spark job. This can be changed in the file
-`src/main/scala/se/danlilja/SimpleTwitterJob.scala` by changing variable
-`location` to the directory containing the `config.txt` file.
+In a Yarn setting you need to change `outputDir` and `checkpointDir` in
+`config.txt` to directories which are available to the driver and all workers in
+the cluster, e.g. a directory in the `hdfs`. The file `config.txt` needs to be
+somewhere the driver and every worker can read it, e.g. in the `hdfs`. You also
+need to change the variable `opts` in the file
+`src/main/scala/se/danlilja/SimpleTwitterJob.scala` to point to it.
 
-You need to make sure all required libraries are available to your Spark cluster.
+Finally, you need to make sure all required libraries are available to your
+Spark cluster.

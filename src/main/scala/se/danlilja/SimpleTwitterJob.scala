@@ -62,13 +62,12 @@ object SimpleTwitterJob {
     // Create SparkSession
     val spark = SparkSession
       .builder
-      .appName("TwitterAnalysis")
+      .appName("SimpleTwitterJob")
       .getOrCreate()
     import spark.implicits._
     val sc = spark.sparkContext
 
-    val location = System.getProperty("user.dir")
-    val opts = sc.broadcast(parseOpts(Source.fromFile(location + "/config.txt")))
+    val opts = sc.broadcast(parseOpts(Source.fromFile(SparkFiles.get("config.txt"))))
 
     System.setProperty("twitter4j.oauth.consumerKey", opts.value.consumerKey)
     System.setProperty("twitter4j.oauth.consumerSecret", opts.value.consumerSecret)

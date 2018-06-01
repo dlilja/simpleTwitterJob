@@ -25,4 +25,5 @@ lazy val root = (project in file("."))
     organizationHomepage := Some(url("http://www.danlilja.se")),
     licenses += "Apache license, version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"),
     libraryDependencies ++= projectDeps,
+    resolvers += Resolver.bintrayRepo("spark-packages", "maven")
     )
